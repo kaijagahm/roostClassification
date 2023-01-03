@@ -18,21 +18,7 @@ library(factoextra) # https://www.datanovia.com/en/lessons/determining-the-optim
 
 Load data
 ```{r}
-load("data/datAnnotCleaned.Rda")
-```
-
-Get roost classifications
-```{r}
-roosts <- vultureUtils::get_roosts_df(df = datAnnotCleaned, id = "trackId")
-simplifiedRoosts <- roosts %>%
-  dplyr::select(trackId, location_long, location_lat, roost_date)
-
-# double-check that we just have one roost per individual per night
-simplifiedRoosts %>%
-  group_by(trackId, roost_date) %>%
-  summarize(n = n()) %>%
-  pull(n) %>%
-  table()
+load("data/simplifiedRoosts.Rda")
 ```
 
 Make some plots
