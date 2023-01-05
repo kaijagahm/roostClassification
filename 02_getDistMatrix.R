@@ -14,5 +14,5 @@ sf <- simplifiedRoosts %>%
 # Compute pairwise distances
 distanceMatrix <- sf::st_distance(sf, sf) %>% # this takes a really really long time with such a big dataset.
   as.dist()
+distanceMatrix <- as.matrix(distanceMatrix)
 save(distanceMatrix, file = "data/distanceMatrix.Rda")
-load("data/distanceMatrix.Rda")
