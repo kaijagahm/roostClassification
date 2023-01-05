@@ -81,5 +81,7 @@ hulls <- map(sfs, ~.x %>%
 
 # Result, for one of the iterations
 mapview::mapview(list(sfs[[1]], hulls[[1]]))
+mapview::mapview(sfs[[1]], zcol = "cluster")+
+  mapview::mapview(hulls[[1]], zcol = "cluster")
 # this is awesome. Time to do a mapview tutorial to learn how to color things and make this look prettier.
 ```
