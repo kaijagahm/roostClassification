@@ -1,4 +1,4 @@
-# DBSCAN parameter test for MARTA
+# DBSCAN parameter test for Marta
 # Created 2023-01-04
 
 # Using the dataset from 2020 through 2022, and a distance of 1000m. Testing MinPts of 2, 3, and 4. I'm not sure 2 makes much sense, but going to try anyway.
