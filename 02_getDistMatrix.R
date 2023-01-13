@@ -32,13 +32,6 @@ sfAll <- allRoosts %>%
 distanceMatrixMarta <- sf::st_distance(sfMarta, sfMarta) %>%
   as.dist() %>%
   as.matrix()
-save(distanceMatrixMarta, file = "data/Roosts_df_mod_distanceMatrix.Rda")
-beepr::beep()
-
-# Compute pairwise distances (All roosts)
-distanceMatrixAll <- sf::st_distance(sfAll, sfAll) %>%
-  as.dist() %>%
-  as.matrix()
-save(distanceMatrixAll, file = "data/Roosts_all_distanceMatrix.Rda")
-beepr::beep()
+Roosts_df_mod_distanceMatrix <- distanceMatrixMarta
+save(Roosts_df_mod_distanceMatrix, file = "data/Roosts_df_mod_distanceMatrix.Rda")
 
