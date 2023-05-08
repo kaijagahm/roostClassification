@@ -7,6 +7,7 @@ library(beepr)
 # Load data
 load("data/simplifiedRoosts.Rda")
 martaRoosts <- read.csv("data/Roosts_df_mod.csv")
+martaRoosts_oldies <- read.csv("data/Roosts_df_mod_oldies.csv")
 allRoosts <- read.csv("data/Roosts_all.csv")
 
 # Create a geographical distance matrix (this is the step that takes a really long time)
@@ -15,6 +16,10 @@ sf <- simplifiedRoosts %>%
   sf::st_set_crs("WGS84")
 
 sfMarta <- martaRoosts %>%
+  sf::st_as_sf(coords = c("location_long", "location_lat"), remove = F) %>%
+  sf::st_set_crs("WGS84")
+
+sfMartaOldies <- martaRoosts_oldies %>%
   sf::st_as_sf(coords = c("location_long", "location_lat"), remove = F) %>%
   sf::st_set_crs("WGS84")
 
@@ -34,4 +39,11 @@ distanceMatrixMarta <- sf::st_distance(sfMarta, sfMarta) %>%
   as.matrix()
 Roosts_df_mod_distanceMatrix <- distanceMatrixMarta
 save(Roosts_df_mod_distanceMatrix, file = "data/Roosts_df_mod_distanceMatrix.Rda")
+
+# Compute pairwise distances (Marta's roosts, with older individuals)
+distanceMatrixMartaOldies <- sf::st_distance(sfMartaOldies, sfMartaOldies) %>%
+  as.dist() %>%
+  as.matrix()
+Roosts_df_mod_distanceMatrix_oldies <- distanceMatrixMartaOldies
+save(Roosts_df_mod_distanceMatrix_oldies, file = "data/Roosts_df_mod_distanceMatrix_oldies.Rda")
 
